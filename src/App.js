@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Formulaire from './components/Formulaire'
+import Message from './components/Message'
 
 class App extends Component {
   render () {
@@ -8,7 +9,10 @@ class App extends Component {
       <div className='box'>
         <div>
           <div className="messages">
-            <p>messages</p>
+            <Message />
+            <Message />
+            <Message />
+            
           </div>
           <Formulaire  />
         </div>
