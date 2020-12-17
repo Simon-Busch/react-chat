@@ -11,7 +11,7 @@ const firebaseApp = firebase.initializeApp({
   databaseURL: "https://chat-app-8b3cc-default-rtdb.firebaseio.com"
 })
 
-const base = Rebase.createClasse(firebase.database())
+const base = Rebase.createClass(firebase.database())
 
 // initialize app
 export { firebaseApp }

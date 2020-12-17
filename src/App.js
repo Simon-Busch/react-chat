@@ -17,6 +17,12 @@ class App extends Component {
     pseudo: this.props.match.params.pseudo
   }
 
+  componentDidMount () {
+    // synchronyze state with db
+    // '/' means storing everything
+    base.syncState('/')
+  }
+
   addMessage = (message) => {
     const messages = {...this.state.messages }
     // give the message a unique key - timestamp
