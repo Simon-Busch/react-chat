@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import './App.css'
 import Formulaire from './components/Formulaire'
 import Message from './components/Message'
@@ -17,10 +17,23 @@ class App extends Component {
     pseudo: this.props.match.params.pseudo
   }
 
+  messageRef = createRef()
+
   componentDidMount () {
     // synchronyze state with db
     // '/' means storing everything
-    base.syncState('/')
+    base.syncState('/', { 
+      context: this,
+      state: 'messages'
+    })
+  }
+
+  componentDidUpdate() {
+    // set up the scroll
+    // current refer to the instant T reference in the message div
+    const ref = this.messageRef.current
+    // set up the anchor
+    ref.scrollTop = ref.scrollHeight
   }
 
   addMessage = (message) => {
@@ -44,7 +57,9 @@ class App extends Component {
     return (
       <div className='box'>
         <div>
-          <div className="messages">
+          <div className="messages"
+              ref={this.messageRef}
+              >
             <div className="message">
               { messages }
             </div>
