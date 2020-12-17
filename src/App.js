@@ -3,6 +3,10 @@ import './App.css'
 import Formulaire from './components/Formulaire'
 import Message from './components/Message'
 
+//firebase
+import base from './base'
+
+
 class App extends Component {
   //we will store all messages in the object message
   // important to store all messages in app because it's the
@@ -21,19 +25,30 @@ class App extends Component {
   }
 
   render () {
+    const messages = Object
+      .keys(this.state.messages)
+      .map(key => (
+        <Message 
+          key={key}
+          pseudo={this.state.messages[key].pseudo}
+          message={this.state.messages[key].message}
+        />
+      ))
+
     return (
       <div className='box'>
         <div>
           <div className="messages">
-            <Message />
-            <Message />
-            <Message />
-
+            <div className="message">
+              { messages }
+            </div>
           </div>
+
           <Formulaire  
             // give acces to the method addMessage to Formulaire
             addMessage={this.addMessage}
             pseudo={this.state.pseudo}
+            length={200}
           />
         </div>
       </div>
