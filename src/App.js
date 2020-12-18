@@ -52,12 +52,16 @@ class App extends Component {
     this.setState({ messages })
   }
 
+  isUser = (pseudo) => pseudo === this.state.pseudo
+    // is the sender the same person as the owner of the message ?
+
   render () {
     const messages = Object
       .keys(this.state.messages)
       .map(key => (
         <Message 
           key={key}
+          isUser={this.isUser}
           pseudo={this.state.messages[key].pseudo}
           message={this.state.messages[key].message}
         />
