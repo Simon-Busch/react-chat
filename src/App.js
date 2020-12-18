@@ -40,6 +40,15 @@ class App extends Component {
     const messages = {...this.state.messages }
     // give the message a unique key - timestamp
     messages[`message-${Date.now()}`] = message
+    Object
+      .keys(messages)
+      //keep the last 10 messages
+      .slice(0,-10)
+      .forEach(key => {
+        //message above 20 set to null => delete in firebase
+        messages[key] = null
+      })
+
     this.setState({ messages })
   }
 
